@@ -407,56 +407,100 @@ input:focus, textarea:focus {
   border-color: rgba(94, 234, 212, 0.3); /* teal accent */
   box-shadow: 0 35px 70px rgba(0,0,0,0.4), inset 0 0 25px rgba(94,234,212,0.08);
 }
-<section class="government-content" style="padding: 6rem 0;">
-  <div class="container">
-    <h2>Capabilities Overview</h2>
-    <div class="services-grid" style="gap: 2.5rem;">
-      <div class="capability-card">
-        <h3>Executive Summary</h3>
-        <p>Digital Venture LLC is a full-service digital agency in Tulsa, OK, delivering innovative solutions with over a decade of experience in SEO, marketing, web/UI/UX design, custom software, mobile apps, and graphics. We build strong partnerships and stay ahead of technology trends.</p>
-      </div>
+.page-hero h1 {
+  animation: fadeInUp 1.2s ease-out;
+}
 
-      <div class="capability-card">
-        <h3>Business Data</h3>
-        <p>8211 E Regal Blvd STE100, Tulsa, OK 74133<br>
-        Phone: (918) 891-3008<br>
-        Email: Info@digitalventuredesign.com<br>
-        UEI: VJNRJ3SLKF3E5 | DUNS: 078216794 | CAGE: 7TCJ0 | Established: 2012</p>
-      </div>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-      <div class="capability-card">
-        <h3>Certifications</h3>
-        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
-          <div class="badge" style="background: rgba(96,165,250,0.2); padding: 1rem; border-radius: 12px; text-align: center;">
-            <img src="https://placehold.co/100x100/60a5fa/f1f5f9?text=8(a)" alt="SBA 8(a)"/>
-            <p>SBA 8(a)</p>
-          </div>
-          <div class="badge" style="background: rgba(96,165,250,0.2); padding: 1rem; border-radius: 12px; text-align: center;">
-            <img src="https://placehold.co/100x100/60a5fa/f1f5f9?text=SDVOSB" alt="SDVOSB"/>
-            <p>SDVOSB</p>
-          </div>
-          <!-- Add HUBZone and Minority Owned similarly -->
-        </div>
-      </div>
+/* Uniform service cards – force same height */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  height: 480px; /* Adjust as needed for uniformity */
+  justify-content: space-between;
+}
 
-      <div class="capability-card">
-        <h3>NAICS Codes</h3>
-        <ul style="columns: 2; list-style: none; padding-left: 0;">
-          <li>• 541613 Marketing Consulting</li>
-          <li>• 541430 Graphic Design</li>
-          <!-- list the rest -->
-        </ul>
-      </div>
-    </div>
+/* Increase spacing sitewide if needed */
+.container {
+  padding: 0 3rem; /* Wider margins */
+}
 
-    <div style="text-align: center; margin: 4rem 0;">
-      <a href="Digital_Venture_2023_Capabilities_Statement_Sml.pdf" class="btn" download>Download Capabilities Statement</a>
-    </div>
+.government-content ul {
+  column-count: 1; /* Avoid multi-column for better readability if spacing was off */
+}
+/* Services Grid – Uniform 3-column layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+  gap: 2.5rem;
+}
 
-    <h2>Past Performance</h2>
-    <div class="logos-grid">
-      <img src="https://placehold.co/220x100/0f172a/f1f5f9?text=BOEM" alt="BOEM"/>
-      <!-- add the rest as before -->
-    </div>
-  </div>
-</section>
+/* Force uniform height & width on cards */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  height: 520px; /* Adjust this value if cards look too tall/short – aim for visual balance */
+  width: 100%;
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.service-card:hover {
+  transform: translateY(-12px) scale(1.04);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+/* Image at top, content fills remaining space */
+.service-card img {
+  width: 100%;
+  height: 220px; /* Fixed image height for uniformity */
+  object-fit: cover;
+}
+
+.service-card .card-content {
+  flex: 1;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  flex: 1;
+}
+
+/* Responsive – stack to 2 columns on tablet, 1 on mobile */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-card {
+    height: auto; /* Allow natural height on small screens */
+  }
+}
