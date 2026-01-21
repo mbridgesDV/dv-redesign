@@ -319,3 +319,144 @@ input:focus, textarea:focus {
   .projects-grid, .services-grid, .logos-grid { grid-template-columns: 1fr; }
   .page-hero { min-height: 60vh; }
 }
+/* Subtle noise texture overlay for tactile feel */
+.card-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03"/></svg>') repeat;
+  pointer-events: none;
+  border-radius: 28px;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+
+/* Softer squishy hover shadows + warmer accent */
+.project-card:hover, .service-card:hover, .capability-card:hover {
+  box-shadow: 0 40px 80px rgba(0,0,0,0.35),
+              inset 0 0 20px rgba(96,165,250,0.08);
+  border-color: rgba(96,165,250,0.35);
+  background: rgba(30,41,59,0.6);
+}
+
+/* Slight color shift on hover for warmth (Oklahoma-inspired subtle green/teal) */
+.project-card:hover .card-link,
+.service-card:hover h3,
+.capability-card:hover h3 {
+  color: #5eead4; /* teal accent – change to your preference */
+}
+
+/* Asymmetric hero content (optional – add to .hero-content or .page-hero .container) */
+.hero-content, .page-hero .container {
+  text-align: left;
+  margin-left: 5%;
+  max-width: 50%;
+}
+
+/* Curved divider between sections (add class="curve-divider" to section after hero) */
+.curve-divider {
+  height: 120px;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%231e293b" d="M0,96L48,112C96,128,192,160,288,176C384,192,480,192,576,181.3C672,171,768,149,864,149.3C960,149,1056,171,1152,176C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+  background-size: cover;
+  margin-top: -60px;
+}
+.hero::before, .page-hero::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -20%;
+  left: -10%;
+  background: radial-gradient(ellipse at 20% 30%, rgba(96,165,250,0.12) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 70%, rgba(51,65,85,0.18) 0%, transparent 60%),
+              radial-gradient(circle at 50% 50%, rgba(30,41,59,0.22) 0%, transparent 70%);
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; /* irregular organic shape */
+  animation: subtle-float 18s infinite ease-in-out;
+}
+
+@keyframes subtle-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(3%, 5%) rotate(1deg); }
+}
+.projects-grid, .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.project-card:nth-child(3n+1), .service-card:nth-child(3n+1) {
+  grid-column: span 2; /* larger cards for variety */
+}
+
+@media (max-width: 1024px) {
+  .project-card:nth-child(3n+1), .service-card:nth-child(3n+1) {
+    grid-column: span 1; /* stack on smaller screens */
+  }
+}
+.project-card, .service-card, .capability-card {
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-card:hover, .service-card:hover, .capability-card:hover {
+  background: rgba(30, 41, 59, 0.65);
+  border-color: rgba(94, 234, 212, 0.3); /* teal accent */
+  box-shadow: 0 35px 70px rgba(0,0,0,0.4), inset 0 0 25px rgba(94,234,212,0.08);
+}
+<section class="government-content" style="padding: 6rem 0;">
+  <div class="container">
+    <h2>Capabilities Overview</h2>
+    <div class="services-grid" style="gap: 2.5rem;">
+      <div class="capability-card">
+        <h3>Executive Summary</h3>
+        <p>Digital Venture LLC is a full-service digital agency in Tulsa, OK, delivering innovative solutions with over a decade of experience in SEO, marketing, web/UI/UX design, custom software, mobile apps, and graphics. We build strong partnerships and stay ahead of technology trends.</p>
+      </div>
+
+      <div class="capability-card">
+        <h3>Business Data</h3>
+        <p>8211 E Regal Blvd STE100, Tulsa, OK 74133<br>
+        Phone: (918) 891-3008<br>
+        Email: Info@digitalventuredesign.com<br>
+        UEI: VJNRJ3SLKF3E5 | DUNS: 078216794 | CAGE: 7TCJ0 | Established: 2012</p>
+      </div>
+
+      <div class="capability-card">
+        <h3>Certifications</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+          <div class="badge" style="background: rgba(96,165,250,0.2); padding: 1rem; border-radius: 12px; text-align: center;">
+            <img src="https://placehold.co/100x100/60a5fa/f1f5f9?text=8(a)" alt="SBA 8(a)"/>
+            <p>SBA 8(a)</p>
+          </div>
+          <div class="badge" style="background: rgba(96,165,250,0.2); padding: 1rem; border-radius: 12px; text-align: center;">
+            <img src="https://placehold.co/100x100/60a5fa/f1f5f9?text=SDVOSB" alt="SDVOSB"/>
+            <p>SDVOSB</p>
+          </div>
+          <!-- Add HUBZone and Minority Owned similarly -->
+        </div>
+      </div>
+
+      <div class="capability-card">
+        <h3>NAICS Codes</h3>
+        <ul style="columns: 2; list-style: none; padding-left: 0;">
+          <li>• 541613 Marketing Consulting</li>
+          <li>• 541430 Graphic Design</li>
+          <!-- list the rest -->
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 4rem 0;">
+      <a href="Digital_Venture_2023_Capabilities_Statement_Sml.pdf" class="btn" download>Download Capabilities Statement</a>
+    </div>
+
+    <h2>Past Performance</h2>
+    <div class="logos-grid">
+      <img src="https://placehold.co/220x100/0f172a/f1f5f9?text=BOEM" alt="BOEM"/>
+      <!-- add the rest as before -->
+    </div>
+  </div>
+</section>
